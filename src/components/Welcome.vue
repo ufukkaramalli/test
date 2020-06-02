@@ -31,7 +31,6 @@
     </v-row>
   </v-container>
 </template>
-
 <script>
   import vue from 'vue'
   import VueTypedJs from 'vue-typed-js'

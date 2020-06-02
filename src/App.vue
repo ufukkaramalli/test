@@ -2,39 +2,24 @@
   <v-app>
     <v-app-bar height="80" :elevation="appBarColored ? 5 : 0" :class="[appBarColored ? 'black' : 'transparent']" fixed>
       <v-toolbar-title class="font-weight-black display-1 text-uppercase">Ufuk .</v-toolbar-title>
-      <!-- <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-      <v-menu
-        left
-        bottom
-      >
-        <template v-slot:activator="{ on }">
-          <v-btn icon v-on="on">
-            <v-icon>mdi-dots-vertical</v-icon>
-          </v-btn>
-        </template>
-
-        <v-list>
-          <v-list-item
-            v-for="n in 5"
-            :key="n"
-            @click="() => {}"
-          >
-            <v-list-item-title>Option {{ n }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu> -->
+      <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-btn tile text @click="$vuetify.goTo('#welcome',{duration:1000})">
+          <span>Home</span>
+          <v-icon right dark>mdi-home</v-icon>
+        </v-btn>
+        <v-divider vertical></v-divider>
+        <v-btn tile text @click="$vuetify.goTo('#works',{duration:1000,offset:-60})">
+          <span>Works</span>
+          <v-icon right dark>mdi-briefcase</v-icon>
+        </v-btn>
+      </v-toolbar-items>
     </v-app-bar>
     <transition appear>
     <v-content>
-      <welcome :background="'transparent'"/>
+      <welcome id="welcome" :background="'transparent'"/>
       <v-divider></v-divider>
-      <works :background="'transparent'"/>
+      <works id="works" :background="'transparent'"/>
       <!-- <v-divider></v-divider>
       <contact :background="'transparent'"/> -->
     </v-content>
@@ -53,7 +38,7 @@
       <v-divider></v-divider>
     </v-container>
     <v-card-text class="white--text text-center">
-        <strong>Ufuk KARAMALLI</strong> | {{ new Date().getFullYear() }}
+        <strong>© Ufuk KARAMALLI</strong> {{ new Date().getFullYear() }} 
       </v-card-text>
     </v-footer>
   </v-app>
@@ -70,6 +55,7 @@ export default {
     works,
     // contact
   },
+  title: 'Welcome | Ufuk KARAMALLI',
   data: () => ({
     offsetTop: 0,
     appBarColored: false,
