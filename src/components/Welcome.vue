@@ -4,17 +4,17 @@
       <v-col cols="11" md="7">
         <v-row class="text-center">
           <v-col cols="12 text-left">
-            <span class="font-weight-black display-1 text-uppercase">Hello, <span class="font-weight-thin">My name is</span></span>
+            <span class="font-weight-black display-1 text-uppercase">Hello,<br v-if="$vuetify.breakpoint.smAndDown"> <span class="font-weight-thin">My name is</span></span>
           </v-col>
           <v-col cols="12">
             <v-img
               :src="require('../assets/ukklogo.svg')"
               class="my-3"
               contain
-              height="200"
+              :height="checkBreakpoint"
             />
           </v-col>
-          <v-col cols="12">
+          <v-col cols="12" class="d-flex text-left">
             <vue-typed-js
               :typeSpeed="150" 
               :cursorChar="'_'" 
@@ -23,7 +23,7 @@
               :smartBackspace="true"
               :strings="typedData2"
             >
-              <h2 class="font-weight-thin display-1 text-uppercase">I am a <span class="typing font-weight-black display-1 text-uppercase"></span></h2>
+              <h2 class="font-weight-thin display-1 text-uppercase">I am a <br v-if="$vuetify.breakpoint.smAndDown"><span class="typing font-weight-black display-1 text-uppercase"></span></h2>
             </vue-typed-js>
           </v-col>
         </v-row>
@@ -99,6 +99,15 @@
       doSmth: function(e){
         this.typeIt.fadeOut = true
         console.log(e)
+      }
+    },
+    computed:{
+      checkBreakpoint: function(){
+        if(this.$vuetify.breakpoint.smAndDown){
+          return 60
+        }else{
+          return 200
+        }
       }
     }
   }

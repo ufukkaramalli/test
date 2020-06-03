@@ -1,7 +1,7 @@
 <template>
 <v-container fluid class="pa-0 mb-12">
   <v-parallax class="pa-0" height="350" src="https://images.unsplash.com/photo-1466428996289-fb355538da1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
-    <div class="fill-height repeating-gradient"></div>
+    <div v-if="gradientOverlay" class="fill-height repeating-gradient"></div>
   </v-parallax>
   <v-container class="py-0">
       <v-row>
@@ -24,7 +24,7 @@
 <script>
   export default {
     name: 'Works',
-    props:['background'],
+    props:['background','gradient-overlay'],
     data: () => ({
       ecosystem: [
         {
@@ -100,6 +100,6 @@
   }
 
   .repeating-gradient {
-    background-image: repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25) 1px, rgba(255, 255, 255, 0.25) 2px, rgba(255, 255, 255, 0.25) 3px );
+    background-image: repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25) 3px, rgba(255, 255, 255, 0.25) 4px, rgba(255, 255, 255, 0.25) 5px );
   }
 </style>

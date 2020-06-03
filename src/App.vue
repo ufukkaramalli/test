@@ -1,15 +1,43 @@
 <template>
   <v-app>
+    <v-navigation-drawer v-model="drawer" temporary app>
+      <template v-slot:prepend>
+          <v-list-item two-line>
+            <v-list-item-title>Navigation</v-list-item-title>
+          </v-list-item>
+        </template>
+        <v-divider></v-divider>
+      <v-list nav dense>
+        <v-list-item link @click="$vuetify.goTo('#home',{duration:1000})">
+          <v-list-item-action>
+            <v-icon>mdi-home</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item link @click="$vuetify.goTo('#works',{duration:1000,offset:-69})">
+          <v-list-item-action>
+            <v-icon>mdi-briefcase</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Works</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
     <v-app-bar height="80" :elevation="appBarColored ? 5 : 0" :class="[appBarColored ? 'black' : 'transparent']" fixed>
-      <v-toolbar-title class="font-weight-black display-1 text-uppercase">Ufuk .</v-toolbar-title>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" v-if="$vuetify.breakpoint.smAndDown"></v-app-bar-nav-icon>
+      <v-toolbar-title v-if="$vuetify.breakpoint.mdAndUp" class="font-weight-black display-1 text-uppercase">Ufuk .</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-btn tile text @click="$vuetify.goTo('#welcome',{duration:1000})">
+      <v-toolbar-items v-if="$vuetify.breakpoint.mdAndUp">
+        <v-btn class="px-6" tile text @click="$vuetify.goTo('#home',{duration:1000})">
           <span>Home</span>
           <v-icon right dark>mdi-home</v-icon>
+          <v-divider></v-divider>
         </v-btn>
         <v-divider vertical></v-divider>
-        <v-btn tile text @click="$vuetify.goTo('#works',{duration:1000,offset:-60})">
+        <v-btn class="px-6" tile text @click="$vuetify.goTo('#works',{duration:1000,offset:-69})">
           <span>Works</span>
           <v-icon right dark>mdi-briefcase</v-icon>
         </v-btn>
@@ -17,9 +45,9 @@
     </v-app-bar>
     <transition appear>
     <v-content>
-      <welcome id="welcome" :background="'transparent'"/>
+      <welcome id="home" :background="'transparent'"/>
       <v-divider></v-divider>
-      <works id="works" :background="'transparent'"/>
+      <works id="works" :background="'transparent'" :gradientOverlay="true"/>
       <!-- <v-divider></v-divider>
       <contact :background="'transparent'"/> -->
     </v-content>
@@ -55,8 +83,11 @@ export default {
     works,
     // contact
   },
-  title: 'Welcome | Ufuk KARAMALLI',
+  title: function(){
+    return 'Welcome | Ufuk KARAMALLI'
+  },
   data: () => ({
+    drawer:true,
     offsetTop: 0,
     appBarColored: false,
     icons: [
@@ -88,6 +119,11 @@ export default {
       }else{
         this.appBarColored = false
       }
+    }
+  },
+  computed:{
+    cdLouder(){
+      return this.$vuetify.breakpoint.name
     }
   }
 };
