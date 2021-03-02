@@ -1,12 +1,13 @@
 <template>
 <v-container fluid class="pa-0">
-  <v-parallax class="pa-0" height="350" src="https://images.unsplash.com/photo-1466428996289-fb355538da1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
-    <div class="fill-height repeating-gradient"></div>
+  <v-parallax class="pa-0" height="350" :src="background">
+    <!-- <div class="fill-height repeating-gradient"></div> -->
   </v-parallax>
+  <v-divider></v-divider>
   <v-container class="py-0">
       <v-row>
         <v-col cols="12" class="d-flex justify-center justify-md-start px-3 px-md-0">
-          <v-alert border="bottom" color="black" dark tile class="mt-n12">
+          <v-alert colored-border border="bottom" color="black" dark tile class="mt-n12">
             <h1 style="z-index:1;" class="display-2 font-weight-black pa-3">CONTACT</h1>
           </v-alert>
         </v-col>
