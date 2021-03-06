@@ -57,57 +57,62 @@
       </v-toolbar-items>
     </v-app-bar>
     <transition appear>
-    <v-content>
-      <welcome id="home" :background="'transparent'"/>
-      <v-divider></v-divider>
-      <CustomSection id="works" :enable-heading="true" :heading-position="'left'" :background="'https://images.unsplash.com/photo-1466428996289-fb355538da1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'">
-        <template #heading>
-          WORKS
-        </template>
-        <template #content>
-          <v-col v-for="work in works" :key="work" cols="12" sm="6" md="4" lg="3" class="d-flex justify-center align-center">
-            <iframe :src="work" frameborder="0" allowfullscreen></iframe>
-          </v-col>
-        </template>
-      </CustomSection>
-      <v-divider></v-divider>
-      <CustomSection id="contact" :enable-heading="true" :heading-position="'right'" :background="'https://images.unsplash.com/photo-1549900075-f03833dbbe9e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'">
-        <template #heading>
-          CONTACT
-        </template>
-        <template #content>
-          <v-col cols="12" class="d-flex px-3">
-          <v-card dark height="180px" class="d-flex align-center justify-center pa-3">
-            <div class="d-flex flex-no-wrap justify-space-between">
-              <v-avatar class="ma-3 mr-0" size="125">
-                <v-img :src="require('./assets/avatar.jpg')"></v-img>
-                </v-avatar>
-              <div>
-                <v-card-title class="headline" v-text="'UFUK KARAMALLI'"></v-card-title>
-                <v-card-subtitle>+905422079512<br>me@ufukkaramalli.com.tr<br>KAPAKLI,TEKIRDAG</v-card-subtitle>
+      <v-content>
+        <welcome id="home" :background="'transparent'"/>
+        <v-divider></v-divider>
+        <CustomSection id="works" :enable-heading="true" :heading-position="'left'" :background="'https://images.unsplash.com/photo-1466428996289-fb355538da1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'">
+          <template #heading>
+            WORKS
+          </template>
+          <template #content>
+            <v-col v-for="n in 12" :key="n" cols="12" sm="6" md="4" lg="3" class="d-flex justify-center align-center">
+              <v-img
+                :src="`https://picsum.photos/500/300?image=${n*5 + 10}`"
+                :lazy-src="`https://picsum.photos/10/6?image=${n*5 + 10}`"
+                aspect-ratio="1"
+                class="grey lighten-2"
+              ></v-img>
+            </v-col>
+          </template>
+        </CustomSection>
+        <v-divider></v-divider>
+        <CustomSection id="contact" :enable-heading="true" :heading-position="'right'" :background="'https://images.unsplash.com/photo-1549900075-f03833dbbe9e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'">
+          <template #heading>
+            CONTACT
+          </template>
+          <template #content>
+            <v-col cols="12" class="d-flex px-3">
+            <v-card dark height="180px" class="d-flex align-center justify-center pa-3">
+              <div class="d-flex flex-no-wrap justify-space-between">
+                <v-avatar class="ma-3 mr-0" size="125">
+                  <v-img :src="require('./assets/avatar.jpg')"></v-img>
+                  </v-avatar>
+                <div>
+                  <v-card-title class="headline" v-text="'UFUK KARAMALLI'"></v-card-title>
+                  <v-card-subtitle>+905422079512<br>me@ufukkaramalli.com.tr<br>KAPAKLI,TEKIRDAG</v-card-subtitle>
+                </div>
               </div>
-            </div>
-          </v-card>
-        </v-col>
-        </template>
-      </CustomSection>
-    </v-content>
+            </v-card>
+          </v-col>
+          </template>
+        </CustomSection>
+      </v-content>
     </transition>
     <v-footer absolute app dark>
-    <v-container fluid>
-      <v-row>
-        <v-col cols="12" class="align-center justify-center d-flex">
-          <v-btn icon fab large v-for="social in icons" :key="social.icon" class="mx-2" v-bind:href="social.link">
-            <v-icon>{{social.icon}}</v-icon>
-          </v-btn>
-        </v-col>
-      </v-row>
-    </v-container>
-    <v-container fluid class="pa-0">
-      <v-divider></v-divider>
-    </v-container>
-    <v-card-text class="white--text text-center">
-        <strong>© Ufuk KARAMALLI</strong> {{ new Date().getFullYear() }} 
+      <v-container fluid>
+        <v-row>
+          <v-col cols="12" class="align-center justify-center d-flex">
+            <v-btn icon fab large v-for="social in icons" :key="social.icon" class="mx-2" v-bind:href="social.link">
+              <v-icon>{{social.icon}}</v-icon>
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-container>
+      <v-container fluid class="pa-0">
+        <v-divider></v-divider>
+      </v-container>
+      <v-card-text class="white--text text-center">
+        <strong>© Ufuk KARAMALLI</strong> {{ new Date().getFullYear() }} - {{appVersion}}
       </v-card-text>
     </v-footer>
   </v-app>
@@ -128,6 +133,7 @@ export default {
     drawer:false,
     offsetTop: 0,
     appBarColored: false,
+    appVersion: process.env.VUE_APP_VERSION,
     icons: [
       {
         icon:'mdi-soundcloud',
@@ -141,17 +147,7 @@ export default {
         icon:'mdi-instagram',
         link:'https://www.instagram.com/ufukkaramalli/',
       }
-      ],
-    works:[
-        'https://www.youtube.com/embed/kzMvKb08L9E',
-        'https://www.youtube.com/embed/mDbmnYJK2tQ',
-        'https://www.youtube.com/embed/3LRSdgLIWHI',
-        'https://www.youtube.com/embed/gI8QgGB5gl8',
-        'https://www.youtube.com/embed/Wz1P_YFz2Vs',
-        'https://www.youtube.com/embed/DljaW86LFf0',
-        'https://www.youtube.com/embed/TXPjUJTf9L0',
-        'https://www.youtube.com/embed/1bINYnJiHyc',
-        ],
+      ]
   }),
   created(){
     window.addEventListener("scroll",this.handleScroll)
