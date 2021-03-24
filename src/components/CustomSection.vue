@@ -7,8 +7,9 @@
       <v-row v-show="enableHeading">
         <v-col cols="12" class="d-flex justify-center" :class="headingPos">
           <v-alert colored-border border="bottom" color="black" dark tile class="mt-n12">
-            <h1 style="z-index:1;" class="display-2 display-md-4 font-weight-black pa-3">
+            <h1 style="z-index:1;" class="d-flex align-center justify-center display-2 display-md-4 font-weight-black pa-3">
               <slot name="heading"></slot>
+              <v-icon v-show="icon" x-large class="ml-2">{{iconName}}</v-icon>
             </h1>
           </v-alert>
         </v-col>
@@ -24,7 +25,18 @@
 <script>
   export default {
     name: 'CustomSection',
-    props:['background','gradient-overlay','enable-heading','heading-position'],
+    props:{
+      background: {
+        type:String
+      },
+      icon: Boolean,
+      iconName: String,
+      enableHeading: Boolean,
+      headingPosition: {
+        type: String,
+        default: 'center'
+      }
+    },
     data: () => ({
     }),
     methods:{
@@ -32,13 +44,13 @@
     computed: {
       headingPos(){
         if (this.headingPosition === 'left') {
-          return 'justify-md-end'
-        } else if(this.headingPosition === 'right') {
           return 'justify-md-start'
+        } else if(this.headingPosition === 'right') {
+          return 'justify-md-end'
         } else if(this.headingPosition === 'center'){
           return 'justify-md-center'
         } else {
-          return ''
+          return false
         }
       }
     },

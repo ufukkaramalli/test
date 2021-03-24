@@ -60,7 +60,7 @@
       <v-content>
         <welcome id="home" :background="'transparent'"/>
         <v-divider></v-divider>
-        <CustomSection id="works" :enable-heading="true" :heading-position="'left'" :background="'https://images.unsplash.com/photo-1466428996289-fb355538da1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'">
+        <CustomSection id="works" icon :icon-name="'mdi-briefcase'" enable-heading :heading-position="'right'" :background="'https://images.unsplash.com/photo-1466428996289-fb355538da1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'">
           <template #heading>
             WORKS
           </template>
@@ -76,12 +76,12 @@
           </template>
         </CustomSection>
         <v-divider></v-divider>
-        <CustomSection id="contact" :enable-heading="true" :heading-position="'right'" :background="'https://images.unsplash.com/photo-1549900075-f03833dbbe9e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'">
+        <CustomSection id="contact" icon :icon-name="'mdi-phone'" enable-heading :heading-position="'left'" :background="'https://images.unsplash.com/photo-1549900075-f03833dbbe9e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'">
           <template #heading>
             CONTACT
           </template>
           <template #content>
-            <v-col cols="12" class="d-flex px-3">
+            <v-col cols="12" class="d-flex justify-center px-3">
             <v-card dark height="180px" class="d-flex align-center justify-center pa-3">
               <div class="d-flex flex-no-wrap justify-space-between">
                 <v-avatar class="ma-3 mr-0" size="125">
@@ -89,7 +89,7 @@
                   </v-avatar>
                 <div>
                   <v-card-title class="headline" v-text="'UFUK KARAMALLI'"></v-card-title>
-                  <v-card-subtitle>+905422079512<br>me@ufukkaramalli.com.tr<br>KAPAKLI,TEKIRDAG</v-card-subtitle>
+                  <v-card-subtitle><!-- +905422079512<br>!-->me@ufukkaramalli.com.tr<br>KAPAKLI,TEKIRDAG</v-card-subtitle>
                 </div>
               </div>
             </v-card>
